@@ -13,3 +13,5 @@ frontend/.vite/
 # Local env files
 server/.env.local
 frontend/.env.local
+# Environment variables
+.env

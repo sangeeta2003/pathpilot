@@ -22,7 +22,7 @@ export default function Leaderboard() {
         const params = [];
         if (skill) params.push(`skill=${encodeURIComponent(skill)}`);
         if (period) params.push(`period=${encodeURIComponent(period)}`);
-        const url = `http://localhost:5000/api/leaderboard${params.length ? "?" + params.join("&") : ""}`;
+        const url = `${import.meta.env.VITE_API_URL}/api/leaderboard${params.length ? "?" + params.join("&") : ""}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error("Failed to fetch leaderboard");
         const data = await res.json();

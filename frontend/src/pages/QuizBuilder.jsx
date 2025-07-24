@@ -21,7 +21,7 @@ export default function QuizBuilder() {
     setScore(0);
     setError("");
     try {
-      const res = await fetch("http://localhost:5000/api/quizzes/generate", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/quizzes/generate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function QuizBuilder() {
     setIsCorrect(null);
     setSubmitted(false);
     try {
-      const res = await fetch(`http://localhost:5000/api/quizzes/ai-check`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/quizzes/ai-check`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,7 +11,7 @@ export default function Swaps() {
     setMessage("");
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/swaps", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/swaps`, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -60,7 +60,7 @@ export default function Swaps() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/api/swaps/${swapId}/endorse`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/swaps/${swapId}/endorse`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export default function Swaps() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5000/api/swaps/${swapId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/swaps/${swapId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

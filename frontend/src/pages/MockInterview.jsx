@@ -18,7 +18,7 @@ export default function MockInterview() {
     const fetchResumeData = async () => {
       setLoadingResumeData(true);
       try {
-        const res = await fetch("http://localhost:5000/api/ai/resume-data", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/resume-data`, {
           headers: { Authorization: "Bearer " + localStorage.getItem("token") },
         });
         if (!res.ok) throw new Error();
@@ -49,7 +49,7 @@ export default function MockInterview() {
       const fd = new FormData();
       fd.append("resume", resume);
       // Call backend to upload and get questions (fallback: not used if resumeData exists)
-      const res = await fetch("http://localhost:5000/api/ai/mockinterview", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/mockinterview`, {
         method: "POST",
         body: fd,
         headers: {
@@ -75,7 +75,7 @@ export default function MockInterview() {
     setCurrent(0);
     setAnswers([]);
     try {
-      const res = await fetch("http://localhost:5000/api/ai/mockinterview", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/mockinterview`, {
         method: "POST",
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -100,7 +100,7 @@ export default function MockInterview() {
     setAIFeedback("");
     // Optionally, get AI feedback for the answer
     try {
-      const res = await fetch("http://localhost:5000/api/ai/interview-feedback", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/interview-feedback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

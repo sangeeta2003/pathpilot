@@ -19,7 +19,7 @@ export default function Roadmap() {
     setRoadmap("");
     setCopied(false);
     try {
-      const res = await fetch("http://localhost:5000/api/ai/roadmap", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/roadmap`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: input }),
@@ -57,7 +57,7 @@ export default function Roadmap() {
     try {
       const formData = new FormData();
       formData.append("resume", file);
-      const res = await fetch("http://localhost:5000/api/resume/upload", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/resume/upload`, {
         method: "POST",
         body: formData,
       });

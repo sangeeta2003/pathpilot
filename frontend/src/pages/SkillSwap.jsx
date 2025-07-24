@@ -23,7 +23,7 @@ function SkillSwapAIChat({ userOffers, userProfile }) {
     setInput("");
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/ai/chat", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -124,7 +124,7 @@ export default function SkillSwap() {
       setLoading(true);
       setError("");
       try {
-        const res = await fetch("http://localhost:5000/api/skillswap", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/skillswap`, {
           headers: { Authorization: "Bearer " + token },
         });
         if (!res.ok) throw new Error("Failed to fetch skill swaps");
@@ -143,7 +143,7 @@ export default function SkillSwap() {
     // Fetch user profile/resume data for context-aware AI
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/ai/resume-data", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/ai/resume-data`, {
           headers: { Authorization: "Bearer " + token },
         });
         if (!res.ok) return;
@@ -162,7 +162,7 @@ export default function SkillSwap() {
     e.preventDefault();
     if (!form.offer.trim() || !form.request.trim()) return;
     try {
-      const res = await fetch("http://localhost:5000/api/skillswap", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/skillswap`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -183,7 +183,7 @@ export default function SkillSwap() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this skill swap offer?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/skillswap/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/skillswap/${id}`, {
         method: "DELETE",
         headers: { Authorization: "Bearer " + token },
       });

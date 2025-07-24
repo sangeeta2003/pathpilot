@@ -18,7 +18,7 @@ export default function Skills() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/users/me", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/me`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Skills() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/skills/match", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/skills/match`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function Skills() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/swaps/request", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/swaps/request`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

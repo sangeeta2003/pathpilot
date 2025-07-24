@@ -22,7 +22,7 @@ export default function Projects() {
       setLoading(true);
       setError("");
       try {
-        const res = await fetch("http://localhost:5000/api/projects", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
           headers: { Authorization: "Bearer " + token },
         });
         if (!res.ok) throw new Error("Failed to fetch projects");
@@ -53,7 +53,7 @@ export default function Projects() {
       let projectRes;
       if (editingId) {
         // Update
-        projectRes = await fetch(`http://localhost:5000/api/projects/${editingId}`, {
+        projectRes = await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${editingId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export default function Projects() {
         });
       } else {
         // Create
-        projectRes = await fetch("http://localhost:5000/api/projects", {
+        projectRes = await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export default function Projects() {
       if (form.screenshot) {
         const fd = new FormData();
         fd.append("screenshot", form.screenshot);
-        const uploadRes = await fetch(`http://localhost:5000/api/projects/${project._id}/screenshot`, {
+        const uploadRes = await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${project._id}/screenshot`, {
           method: "POST",
           headers: { Authorization: "Bearer " + token },
           body: fd,
@@ -127,7 +127,7 @@ export default function Projects() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this project?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/projects/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${id}`, {
         method: "DELETE",
         headers: { Authorization: "Bearer " + token },
       });
@@ -240,7 +240,7 @@ export default function Projects() {
                   {proj.screenshot && (
                     <div className="mt-2">
                       <img
-                        src={`http://localhost:5000${proj.screenshot}`}
+                        src={`${import.meta.env.VITE_API_URL}${proj.screenshot}`}
                         alt="Screenshot"
                         className="rounded shadow max-h-48 border"
                       />

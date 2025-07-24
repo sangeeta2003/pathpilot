@@ -22,7 +22,7 @@ export default function DSA() {
       setLoading(true);
       setError("");
       try {
-        const res = await fetch("http://localhost:5000/api/dsa");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa`);
         if (!res.ok) throw new Error("Failed to fetch problems");
         const data = await res.json();
         setProblems(Array.isArray(data) ? data : []);
@@ -41,7 +41,7 @@ export default function DSA() {
       try {
         const token = getToken();
         if (!token) return setProgress([]);
-        const res = await fetch("http://localhost:5000/api/dsa/progress", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/progress`, {
           headers: { Authorization: "Bearer " + token },
         });
         if (!res.ok) throw new Error();
@@ -69,7 +69,7 @@ export default function DSA() {
         setActionMsg("Login required to track progress.");
         return;
       }
-      const res = await fetch(`http://localhost:5000/api/dsa/${id}/mark`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/${id}/mark`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export default function DSA() {
     setSelected(id);
     setDetail(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/dsa/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/${id}`);
       if (!res.ok) throw new Error();
       const data = await res.json();
       setDetail(data.problem);
@@ -113,7 +113,7 @@ export default function DSA() {
         setActionMsg("Login required to submit solution.");
         return;
       }
-      const res = await fetch(`http://localhost:5000/api/dsa/${detail._id}/solve`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/dsa/${detail._id}/solve`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

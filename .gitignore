@@ -1,0 +1,15 @@
+# Node modules
+server/node_modules/
+frontend/node_modules/
+
+# Build output
+server/dist/
+frontend/dist/
+
+# Vite files
+server/.vite/
+frontend/.vite/
+
+# Local env files
+server/.env.local
+frontend/.env.local
